@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "medibook-api"
+version = "1.0.0"
+description = "MediBook healthcare appointment and medical records API"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115,<1", "uvicorn[standard]>=0.30,<1", "SQLAlchemy>=2.0,<3",
+  "psycopg[binary]>=3.2,<4", "alembic>=1.13,<2", "pydantic-settings>=2.5,<3", "python-dotenv>=1.0,<2",
+  "PyJWT>=2.9,<3", "pwdlib[argon2]>=0.2,<1", "email-validator>=2.2,<3",
+  "python-multipart>=0.0.9,<1", "httpx>=0.27,<1"
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "httpx>=0.27,<1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.setuptools.packages.find]
+include = ["app*", "scripts*"]
+exclude = ["tests*", "migrations*"]
